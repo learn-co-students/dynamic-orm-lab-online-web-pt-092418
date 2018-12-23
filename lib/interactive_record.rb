@@ -51,10 +51,10 @@ class InteractiveRecord
   end
 
   def self.find_by(arg)
-    binding.pry
-    value = arg.values
-    arg.each{|k,v| k=key, v=value}
-    sql = "SELECT * FROM #{self.table_name} WHERE '#{key}' = '#{value}' LIMIT 1"
+    #binding.pry
+    value = arg.values.first
+    key = arg.keys.first
+    sql = "SELECT * FROM #{self.table_name} WHERE #{key.to_s} = '#{value}'"
     DB[:conn].execute(sql)
   end
 end
